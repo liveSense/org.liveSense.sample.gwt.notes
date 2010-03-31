@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <goals>
+                <goal>install</goal>
+                <goal>sling:install</goal>
+                
+            </goals>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </action>
+        <action>
+            <actionName>build</actionName>
+            <goals>
+                <goal>install</goal>
+                
+            </goals>
+        </action>
+        <action>
+            <actionName>rebuild</actionName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+                
+            </goals>
+        </action>
+        <action>
+            <actionName>debug</actionName>
+            <goals>
+                <goal>gwt:debug</goal>
+            </goals>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+                <port>8080</port>
+                <noServer>true</noServer>
+                <runTarget>http://localhost:8080/gwt/demo/index.html</runTarget>
+            </properties>
+        </action>
+        <action>
+            <actionName>build-with-dependencies</actionName>
+            <basedir>../</basedir>
+            <reactor>also-make</reactor>
+            <goals>
+                <goal>install</goal>
+                
+            </goals>
+        </action>
+    </actions>
