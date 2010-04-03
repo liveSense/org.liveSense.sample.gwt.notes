@@ -1,50 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
+    <action>
+        <actionName>CUSTOM-GWT Compile</actionName>
+        <displayName>GWT Compile</displayName>
+        <goals>
+            <goal>gwt:compile</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>gwt-compile</activatedProfile>
+        </activatedProfiles>
+    </action>
+    <action>
+        <actionName>CUSTOM-GWT Run</actionName>
+        <displayName>GWT Run (Hodted mode)</displayName>
+        <goals>
+            <goal>gwt:run</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>development</activatedProfile>
+            <activatedProfile>gwt-hostedmode</activatedProfile>
+        </activatedProfiles>
+    </action>
         <action>
-            <actionName>run</actionName>
-            <goals>
-                <goal>install</goal>
-                <goal>sling:install</goal>
-                
-            </goals>
-            <properties>
-                <maven.test.skip>true</maven.test.skip>
-            </properties>
-        </action>
-        <action>
-            <actionName>build</actionName>
-            <goals>
-                <goal>install</goal>
-                
-            </goals>
-        </action>
-        <action>
-            <actionName>rebuild</actionName>
-            <goals>
-                <goal>clean</goal>
-                <goal>install</goal>
-                
-            </goals>
-        </action>
-        <action>
-            <actionName>debug</actionName>
+            <actionName>CUSTOM-GWT Debug</actionName>
             <goals>
                 <goal>gwt:debug</goal>
             </goals>
-            <properties>
-                <maven.test.skip>true</maven.test.skip>
-                <port>8080</port>
-                <noServer>true</noServer>
-                <runTarget>http://localhost:8080/gwt/demo/index.html</runTarget>
-            </properties>
+			<displayName>GWT Debug (Hosted mode)</displayName>
+			<activatedProfiles>
+                <activatedProfile>development</activatedProfile>
+                <activatedProfile>gwt-hostedmode</activatedProfile>
+            </activatedProfiles>
         </action>
         <action>
-            <actionName>build-with-dependencies</actionName>
-            <basedir>../</basedir>
-            <reactor>also-make</reactor>
+            <actionName>CUSTOM-Full build</actionName>
+            <displayName>Full build</displayName>
             <goals>
                 <goal>install</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>gwt-compile</activatedProfile>
+                <activatedProfile>release</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-Submit to remote repository</actionName>
+            <goals>
+                <goal>exec:exec</goal>
+            </goals>
+            <displayName>Submit to remote repository</displayName>
+            <activatedProfiles>
+                <activatedProfile>git-push</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-Update from remote repository</actionName>
+            <goals>
+                <goal>exec:exec</goal>
                 
             </goals>
+            <displayName>Update from remote repository</displayName>
+            <activatedProfiles>
+                <activatedProfile>git-pull</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-Install Bundle to running Sling (Development)</actionName>
+            <displayName>Install Bundle to running Sling (Development)</displayName>
+            <goals>
+                <goal>sling:install</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>development</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-Install Bundle to running Sling (Release)</actionName>
+            <displayName>Install Bundle to running Sling (Release)</displayName>
+            <goals>
+                <goal>sling:install</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>release</activatedProfile>
+            </activatedProfiles>
         </action>
     </actions>

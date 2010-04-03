@@ -18,180 +18,208 @@
  */
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-    <properties>
-        <gwt.version>2.0.1</gwt.version>
-        <gwt.project>org.liveSense.sample.gwt.Notes</gwt.project>
-    </properties>
+	<properties>
+		<gwt.version>2.0.3</gwt.version>
+		<gwt.project>org.liveSense.sample.gwt.Notes</gwt.project>
+	</properties>
 
-    <groupId>org.liveSense</groupId>
-    <artifactId>${gwt.project}</artifactId>
-    <packaging>bundle</packaging>
-    <version>1.0.0</version>
-    <name>liveSense GWT Sample</name>
-    <description>liveSense GWT sample
-    </description>
+	<groupId>org.liveSense</groupId>
+	<artifactId>${gwt.project}</artifactId>
+	<packaging>bundle</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>liveSense GWT Sample</name>
+	<description>liveSense GWT sample
+	</description>
 
-    <build>
-        <plugins>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
-                </configuration>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-scr-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-scr-scrdescriptor</id>
+						<goals>
+							<goal>scr</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-scr-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate-scr-scrdescriptor</id>
-                        <goals>
-                            <goal>scr</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.sling</groupId>
+				<artifactId>maven-sling-plugin</artifactId>
+				<configuration>
+					<executions>
+						<execution>
+							<id>install-bundle</id>
+							<phase>install</phase>
+							<goals>
+								<goal>install</goal>
+							</goals>
+						</execution>
+					</executions>
+				</configuration>
+			</plugin>
 
-            <plugin>
-                <groupId>org.apache.sling</groupId>
-                <artifactId>maven-sling-plugin</artifactId>
-                <configuration>
-                    <executions>
-                        <execution>
-                            <id>install-bundle</id>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>install</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </configuration>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
 
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <instructions>
+						<Export-Package>
+							org.liveSense.sample.gwt.server.*;version=${pom.version}
+						</Export-Package>
 
-                        <Export-Package>
-                            org.liveSense.sample.gwt.server.*
-                        </Export-Package>
+						<DynamicImport-Package>
+							com.google.gwt.*
+						</DynamicImport-Package>
 
-                        <DynamicImport-Package>
-                            com.google.gwt.*
-                        </DynamicImport-Package>
+						<Sling-Bundle-Resources>
+							/gwt
+						</Sling-Bundle-Resources>
 
-                        <Sling-Bundle-Resources>
-                            /gwt
-                        </Sling-Bundle-Resources>
+						<Sling-Initial-Content>
+							SLING-INF/content
+						</Sling-Initial-Content>
 
-                        <Sling-Initial-Content>
-                            SLING-INF/content
-                        </Sling-Initial-Content>
+						<Include-Resource>
+							gwt=target/${gwt.project}-${version},
+							{maven-resources}
+						</Include-Resource>
 
-                        <Include-Resource>
-                            gwt=target/${gwt.project}-${version},
-                            {maven-resources}
-                        </Include-Resource>
-
-                    </instructions>
-                </configuration>
-            </plugin>
-
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>gwt-maven-plugin</artifactId>
-                <version>1.2</version>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <module>${gwt.project}</module>
-                        </configuration>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-
-    </build>
-    <dependencies>
-        <dependency>
-            <groupId>org.liveSense</groupId>
-            <artifactId>org.liveSense.servlet.gwtrpc</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+					</instructions>
+				</configuration>
+			</plugin>
 
 
-        <dependency>
-            <groupId>org.apache.jackrabbit</groupId>
-            <artifactId>jackrabbit-api</artifactId>
-            <version>1.6.0</version>
-            <optional>false</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.jcr.api</artifactId>
-            <version>2.0.2-incubator</version>
-            <optional>false</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.api</artifactId>
-            <version>2.0.8</version>
-            <optional>false</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.jcr.base</artifactId>
-            <version>2.0.4-incubator</version>
-            <optional>false</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.servlets.post</artifactId>
-            <version>2.0.4-incubator</version>
-            <optional>false</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.scr</artifactId>
-            <version>1.4.0</version>
-            <optional>false</optional>
-        </dependency>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<configuration>
+							<module>${gwt.project}</module>
+						</configuration>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <version>${gwt.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-user</artifactId>
-            <version>${gwt.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.framework</artifactId>
-            <version>2.0.2</version>
-            <optional>false</optional>
-        </dependency>
-    </dependencies>
-	<profiles>		<profile>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.liveSense</groupId>
+			<artifactId>com.google.gwt</artifactId>
+			<version>${gwt.version}</version>
+			<type>bundle</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.commons.log</artifactId>
+			<version>2.0.7-SNAPSHOT</version>
+			<type>bundle</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.jcr.api</artifactId>
+			<version>2.0.7-SNAPSHOT</version>
+			<type>bundle</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.jcr</groupId>
+			<artifactId>jcr</artifactId>
+			<version>2.0</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+			<version>4.2.0</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<profiles>
+		<profile>
+			<id>gwt-hostedmode</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<version>1.2</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>debug</goal>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<module>${gwt.project}.Editor</module>
+							<debugPort>${gwt.debugPort}</debugPort>
+							<port>${gwt.port}</port>
+							<noServer>${gwt.noServer}</noServer>
+							<runTarget>${gwt.runTarget}</runTarget>
+							<debugSuspend>${gwt.debugSuspend}</debugSuspend>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>gwt-compile</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<version>1.2</version>
+						<executions>
+							<execution>
+								<configuration>
+									<module>${gwt.project}.Editor</module>
+								</configuration>
+								<goals>
+									<goal>compile</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
 			<id>git-push</id>
 			<build>
 				<plugins>
@@ -247,3 +275,5 @@
 		</profile>
 	</profiles>
 </project>
+
+
