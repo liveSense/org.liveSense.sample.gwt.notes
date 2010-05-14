@@ -25,7 +25,7 @@ package org.liveSense.sample.gwt.server;
 import org.apache.sling.jcr.api.SlingRepository;
 import org.liveSense.sample.gwt.client.Note;
 import org.liveSense.sample.gwt.client.NotesService;
-import org.liveSense.servlet.gwtrpc.SlingRemoteServiceServlet;
+import org.liveSense.servlet.gwtrpc.GWTServiceServlet;
 import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +54,7 @@ import java.util.ArrayList;
  * @scr.service interface="javax.servlet.Servlet"
  * @scr.property name="sling.servlet.paths" values="/gwt/org.liveSense.sample.gwt.Notes/notesservice"
  */
-public class NotesServiceImpl extends SlingRemoteServiceServlet implements NotesService {
+public class NotesServiceImpl extends GWTServiceServlet implements NotesService {
 
     /**
      * The logging facility.
@@ -231,4 +231,8 @@ public class NotesServiceImpl extends SlingRemoteServiceServlet implements Notes
 
         return message;
     }
+
+	@Override
+	public void callInit() {
+	}
 }
