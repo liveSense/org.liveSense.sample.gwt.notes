@@ -133,6 +133,13 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.liveSense</groupId>
+			<artifactId>org.liveSense.utils</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<type>bundle</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
 			<version>${gwt.version}</version>
