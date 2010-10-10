@@ -25,7 +25,6 @@ package org.liveSense.sample.gwt.server;
 import org.apache.sling.jcr.api.SlingRepository;
 import org.liveSense.sample.gwt.client.Note;
 import org.liveSense.sample.gwt.client.NotesService;
-import org.liveSense.servlet.gwtrpc.GWTServiceServlet;
 import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +34,7 @@ import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.util.ArrayList;
+import org.liveSense.servlet.gwtrpc.GWTServiceServlet;
 
 /**
  * This class implements a servlet-based RPC remote service for handling RPC calls from the GWT client application.
