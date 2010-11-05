@@ -26,7 +26,7 @@
 	</properties>
 
 	<groupId>org.liveSense</groupId>
-	<artifactId>${gwt.project}</artifactId>
+	<artifactId>org.liveSense.sample.gwt.Notes</artifactId>
 	<packaging>bundle</packaging>
 	<version>1.0.0</version>
 	<name>liveSense GWT Sample</name>
@@ -41,6 +41,9 @@
 				<configuration>
 					<source>1.5</source>
 					<target>1.5</target>
+                                        <excludes>
+                                            <exclude>**/client/**</exclude>
+                                        </excludes>
 				</configuration>
 			</plugin>
 
@@ -53,6 +56,9 @@
 						<goals>
 							<goal>scr</goal>
 						</goals>
+						<configuration>
+                    		<sourceExcludes>**/client/**</sourceExcludes>
+                		</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -81,11 +87,11 @@
 					<instructions>
 
 						<Export-Package>
-							org.liveSense.sample.gwt.server.*;version=${pom.version}
+							!*
 						</Export-Package>
 
 						<DynamicImport-Package>
-							com.google.gwt.*
+							com.google.gwt.user.client.rpc.core.*
 						</DynamicImport-Package>
 
 						<Sling-Bundle-Resources>
@@ -93,7 +99,7 @@
 						</Sling-Bundle-Resources>
 
 						<Sling-Initial-Content>
-							SLING-INF/content
+							SLING-INF/content;overwrite:=true
 						</Sling-Initial-Content>
 
 						<Include-Resource>
@@ -127,7 +133,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.liveSense</groupId>
-			<artifactId>org.liveSense.cpre</artifactId>
+			<artifactId>org.liveSense.core</artifactId>
 			<version>1.0.0</version>
 			<type>bundle</type>
 			<scope>provided</scope>
@@ -172,6 +178,12 @@
 	  <artifactId>org.liveSense.servlet.gwt-rpc</artifactId>
 	  <version>1.0.0</version>
 	  <type>bundle</type>
+	 </dependency>
+	 <dependency>
+	  <groupId>org.osgi</groupId>
+	  <artifactId>org.osgi.core</artifactId>
+	  <version>4.1.0</version>
+	  <type>jar</type>
 	 </dependency>
 	</dependencies>
 	<profiles>
