@@ -22,6 +22,9 @@
  */
 package org.liveSense.sample.gwt.client;
 
+import org.liveSense.sample.gwt.service.Note;
+import org.liveSense.sample.gwt.service.NotesServiceAsync;
+import org.liveSense.sample.gwt.service.NotesService;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;

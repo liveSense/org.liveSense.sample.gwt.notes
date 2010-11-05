@@ -23,8 +23,8 @@
 package org.liveSense.sample.gwt.server;
 
 import org.apache.sling.jcr.api.SlingRepository;
-import org.liveSense.sample.gwt.client.Note;
-import org.liveSense.sample.gwt.client.NotesService;
+import org.liveSense.sample.gwt.service.Note;
+import org.liveSense.sample.gwt.service.NotesService;
 import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -114,6 +114,7 @@ public class NotesServiceImpl extends GWTServiceServlet implements NotesService 
          */
         super.setClassLoader(this.getClass().getClassLoader());
         super.setBundle(context.getBundleContext().getBundle());
+
         log.info("activate: initialized and provided classloader {} to GWT.", this.getClass().getClassLoader());
 
         try {
