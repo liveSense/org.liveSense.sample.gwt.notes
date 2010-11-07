@@ -21,7 +21,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<properties>
-		<gwt.version>2.0.3</gwt.version>
+		<gwt.version>2.1.0</gwt.version>
 		<gwt.project>org.liveSense.sample.gwt.Notes</gwt.project>
 	</properties>
 
@@ -91,7 +91,7 @@
 						</Export-Package>
 
 						<DynamicImport-Package>
-							com.google.gwt.user.client.rpc.core.*
+							com.google.gwt.user.client.rpc.*
 						</DynamicImport-Package>
 
 						<Sling-Bundle-Resources>
@@ -103,7 +103,7 @@
 						</Sling-Initial-Content>
 
 						<Include-Resource>
-							gwt=target/${gwt.project}-${version},
+							gwt=target/${gwt.project}-${project.version},
 							{maven-resources}
 						</Include-Resource>
 
@@ -115,7 +115,6 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>1.2</version>
 				<executions>
 					<execution>
 						<configuration>
@@ -186,112 +185,6 @@
 	  <type>jar</type>
 	 </dependency>
 	</dependencies>
-	<profiles>
-		<profile>
-			<id>gwt-hostedmode</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>gwt-maven-plugin</artifactId>
-						<version>1.2</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>debug</goal>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<module>${gwt.project}.Editor</module>
-							<debugPort>${gwt.debugPort}</debugPort>
-							<port>${gwt.port}</port>
-							<noServer>${gwt.noServer}</noServer>
-							<runTarget>${gwt.runTarget}</runTarget>
-							<debugSuspend>${gwt.debugSuspend}</debugSuspend>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>gwt-compile</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>gwt-maven-plugin</artifactId>
-						<version>1.2</version>
-						<executions>
-							<execution>
-								<configuration>
-									<module>${gwt.project}.Editor</module>
-								</configuration>
-								<goals>
-									<goal>compile</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>git-push</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>exec-maven-plugin</artifactId>
-						<version>1.1</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>exec</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<executable>git</executable>
-							<arguments>
-								<argument>push</argument>
-								<argument>origin</argument>
-								<argument>master</argument>
-							</arguments>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>git-pull</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>exec-maven-plugin</artifactId>
-						<version>1.1</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>exec</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<executable>git</executable>
-							<arguments>
-								<argument>pull</argument>
-								<argument>origin</argument>
-								<argument>master</argument>
-							</arguments>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>
 
 
