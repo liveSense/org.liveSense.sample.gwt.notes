@@ -174,7 +174,7 @@
 		</dependency>
 	 <dependency>
 	  <groupId>org.liveSense</groupId>
-	  <artifactId>org.liveSense.servlet.gwt-rpc</artifactId>
+	  <artifactId>org.liveSense.servlet.gwtrpc</artifactId>
 	  <version>1.0.0</version>
 	  <type>bundle</type>
 	 </dependency>
