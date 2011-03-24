@@ -52,7 +52,7 @@ import org.liveSense.servlet.gwtrpc.GWTServiceServlet;
  *
  * @scr.component metatype="false"
  * @scr.service interface="javax.servlet.Servlet"
- * @scr.property name="sling.servlet.paths" values="/gwt/org.liveSense.sample.gwt.Notes/notesservice"
+ * @scr.property name="sling.servlet.paths" values="/gwt/org.liveSense.sample.gwt.notes/notesservice"
  */
 public class NotesServiceImpl extends GWTServiceServlet implements NotesService {
 
