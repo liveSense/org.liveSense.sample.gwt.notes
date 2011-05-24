@@ -87,7 +87,7 @@
 						</Sling-Bundle-Resources>
 
 						<Sling-Initial-Content>
-							SLING-INF/content;overwrite:=true
+							SLING-INF/content
 						</Sling-Initial-Content>
 
 						<Include-Resource>

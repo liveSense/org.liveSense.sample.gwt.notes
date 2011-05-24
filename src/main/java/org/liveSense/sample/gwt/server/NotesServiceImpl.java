@@ -77,7 +77,7 @@ public class NotesServiceImpl extends GWTServiceServlet implements NotesService 
      * The <code>String</code> constant representing the name of the path in the repository under which the notes are
      * stored.
      */
-    private static final String PATH_DEMOCONTENT = "/gwt/demo/notes";
+    private static final String PATH_DEMOCONTENT = "/samples/notes/notes";
 
     /**
      * This is the <code>SlingRepository</code> as provided by the Sling environment. It is used for repository
