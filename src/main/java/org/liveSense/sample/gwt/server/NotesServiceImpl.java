@@ -113,7 +113,7 @@ public class NotesServiceImpl extends GWTServiceServlet implements NotesService 
          * resources via bundles.
          */
         super.setClassLoader(this.getClass().getClassLoader());
-        super.setBundle(context.getBundleContext().getBundle());
+        super.setClientBundle(context.getBundleContext().getBundle());
 
         log.info("activate: initialized and provided classloader {} to GWT.", this.getClass().getClassLoader());
 
