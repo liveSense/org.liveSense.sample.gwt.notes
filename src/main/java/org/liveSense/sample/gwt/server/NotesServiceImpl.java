@@ -22,6 +22,10 @@
  */
 package org.liveSense.sample.gwt.server;
 
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Properties;
+import org.apache.felix.scr.annotations.Property;
+import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.jcr.api.SlingRepository;
 import org.liveSense.sample.gwt.service.Note;
 import org.liveSense.sample.gwt.service.NotesService;
@@ -49,11 +53,13 @@ import org.liveSense.servlet.gwtrpc.GWTServiceServlet;
  * The class is an implementation of the <code>SlingRemoteServiceServlet</code> and is as such able to handle
  * GWT RPC calls in a Sling environment. The servlet must be registered with the GWT client application in the
  * <code>Notes.gwt.xml</code> module configuration file.
- *
- * @scr.component metatype="false"
- * @scr.service interface="javax.servlet.Servlet"
- * @scr.property name="sling.servlet.paths" values="/gwt/org.liveSense.sample.gwt.notes/notesservice"
  */
+@Component(metatype=false, inherit=true)
+@Service(value=javax.servlet.Servlet.class)
+@Properties(value={
+	@Property(name="sling.servlet.paths", value="/gwt/org.liveSense.sample.gwt.notes/notesservice"),
+	@Property(name="sling.servlet.methods", value={"GET", "POST"})
+})
 public class NotesServiceImpl extends GWTServiceServlet implements NotesService {
 
     /**
@@ -78,14 +84,6 @@ public class NotesServiceImpl extends GWTServiceServlet implements NotesService 
      * stored.
      */
     private static final String PATH_DEMOCONTENT = "/samples/notes/notes";
-
-    /**
-     * This is the <code>SlingRepository</code> as provided by the Sling environment. It is used for repository
-     * access/operations.
-     *
-     * @scr.reference
-     */
-    private SlingRepository repository;
 
     /**
      * This is the <code>javax.jcr.Session</code> used for repository operations. It is retrieved from the repository
@@ -119,7 +117,7 @@ public class NotesServiceImpl extends GWTServiceServlet implements NotesService 
 
         try {
             // retrieve a session from the repository
-            session = repository.loginAdministrative(repository.getDefaultWorkspace());
+            session = getRepository().loginAdministrative(getRepository().getDefaultWorkspace());
         } catch (RepositoryException e) {
             log.error("activate: repository unavailable: " + context + ": ", e);
         }
