@@ -234,4 +234,8 @@ public class NotesServiceImpl extends GWTServiceServlet implements NotesService 
 	@Override
 	public void callInit() {
 	}
+	
+	@Override
+	public void callFinal() {
+	}
 }
