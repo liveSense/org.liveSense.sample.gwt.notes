@@ -33,7 +33,7 @@
 	<artifactId>org.liveSense.sample.gwt.notes</artifactId>
 	<packaging>bundle</packaging>
 	<version>1.0.1-SNAPSHOT</version>
-	<name>liveSense GWT Sample</name>
+	<name>liveSense :: Sample :: GWT</name>
 	<description>liveSense GWT sample
 	</description>
 
