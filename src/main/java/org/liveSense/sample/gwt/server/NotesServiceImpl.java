@@ -22,23 +22,24 @@
  */
 package org.liveSense.sample.gwt.server;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
-import org.apache.sling.jcr.api.SlingRepository;
-import org.liveSense.sample.gwt.service.Note;
-import org.liveSense.sample.gwt.service.NotesService;
-import org.osgi.service.component.ComponentContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import java.util.ArrayList;
-import org.liveSense.servlet.gwtrpc.GWTServiceServlet;
+
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Properties;
+import org.apache.felix.scr.annotations.Property;
+import org.apache.felix.scr.annotations.Service;
+import org.liveSense.sample.gwt.service.Note;
+import org.liveSense.sample.gwt.service.NotesService;
+import org.liveSense.service.gwt.GWTRPCServlet;
+import org.osgi.service.component.ComponentContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * This class implements a servlet-based RPC remote service for handling RPC calls from the GWT client application.
@@ -60,7 +61,7 @@ import org.liveSense.servlet.gwtrpc.GWTServiceServlet;
 	@Property(name="sling.servlet.paths", value="/gwt/org.liveSense.sample.gwt.notes/notesservice"),
 	@Property(name="sling.servlet.methods", value={"GET", "POST"})
 })
-public class NotesServiceImpl extends GWTServiceServlet implements NotesService {
+public class NotesServiceImpl extends GWTRPCServlet implements NotesService {
 
     /**
      * The logging facility.
