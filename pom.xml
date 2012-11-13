@@ -37,6 +37,9 @@
 	<name>liveSense :: Sample :: GWT RPC Notes</name>
 	<description>liveSense GWT RPC sample
 	</description>
+	<properties>
+		<gwt.project>notes</gwt.project>
+	</properties>
 
 	<build>
 		<plugins>
@@ -82,12 +85,13 @@
 						</DynamicImport-Package>
 
 						<Sling-Bundle-Resources>
-							/gwt
+							/gwt,
 						</Sling-Bundle-Resources>
 
 						<Sling-Initial-Content>
-							SLING-INF/content
-						</Sling-Initial-Content>
+                            SLING-INF/jcr-nodes;overwrite:=false;uninstall:=true;overwriteProperties=true,
+							SLING-INF/jcr-contents;overwrite:=false;uninstall:=true;overwriteProperties=true
+                        </Sling-Initial-Content>
 
 						<Include-Resource>
 							gwt=target/${project.artifactId}-${project.version},
