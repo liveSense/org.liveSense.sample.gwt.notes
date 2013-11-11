@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><features name="liveSense-${liveSense.version}-sample-gwt-notes" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+	<feature name="liveSense-sample-gwt-notes" version="${liveSense.sample.gwt.notes.version}" description="liveSense sample gwt notes">
+		<feature>liveSense-core-base</feature>
+		<feature>liveSense-service-gwt</feature>
+        <bundle>mvn:com.github.livesense/org.liveSense.sample.gwt.notes/${liveSense.sample.gwt.notes.version}</bundle>
+	</feature>
+</features>

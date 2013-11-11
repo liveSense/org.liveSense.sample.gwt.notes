@@ -135,7 +135,8 @@ public class NotesServiceImpl extends GWTRPCServlet implements NotesService {
     /**
      * {@inheritDoc}
      */
-    public String createNote(Note note) {
+    @Override
+	public String createNote(Note note) {
 
         String message = "The note was successfully created!";
 
@@ -176,7 +177,8 @@ public class NotesServiceImpl extends GWTRPCServlet implements NotesService {
     /**
      * {@inheritDoc}
      */
-    public ArrayList getNotes() {
+    @Override
+	public ArrayList getNotes() {
 
         final ArrayList<Note> notes = new ArrayList<Note>();
 
@@ -217,7 +219,8 @@ public class NotesServiceImpl extends GWTRPCServlet implements NotesService {
     /**
      * {@inheritDoc}
      */
-    public String deleteNote(String path) {
+    @Override
+	public String deleteNote(String path) {
 
         String message = "The note was successfully deleted!";
 
