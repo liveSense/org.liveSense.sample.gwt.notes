@@ -95,8 +95,8 @@
                         </Sling-Initial-Content>
 
 						<Include-Resource>
-							gwt=target/${project.artifactId}-${project.version},
-							{maven-resources}
+							{maven-resources},
+							gwt=target/${project.artifactId}-${project.version}
 						</Include-Resource>
 
 					</instructions>
@@ -158,6 +158,10 @@
 		<dependency>
 			<groupId>com.github.livesense</groupId>
 			<artifactId>org.liveSense.core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.misc.jcrWrapper</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.github.livesense</groupId>
